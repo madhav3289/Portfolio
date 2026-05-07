@@ -4,10 +4,14 @@ import { roles } from '../data/portfolioData';
 
 const RoleCard = ({ role, index }) => {
   const cardRef = useRef(null);
+  const imageRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+
+  const imageMouseX = useMotionValue(0);
+  const imageMouseY = useMotionValue(0);
 
   const rotateX = useSpring(useTransform(mouseY, [-1, 1], [14, -14]), {
     stiffness: 200,
@@ -17,6 +21,16 @@ const RoleCard = ({ role, index }) => {
     stiffness: 200,
     damping: 25,
   });
+
+  const imageRotateX = useSpring(useTransform(imageMouseY, [-1, 1], [18, -18]), {
+    stiffness: 300,
+    damping: 20,
+  });
+  const imageRotateY = useSpring(useTransform(imageMouseX, [-1, 1], [-18, 18]), {
+    stiffness: 300,
+    damping: 20,
+  });
+
   const scale = useSpring(isHovered ? 1.04 : 1, { stiffness: 300, damping: 25 });
 
   const handleMouseMove = (e) => {
@@ -27,6 +41,15 @@ const RoleCard = ({ role, index }) => {
     const y = ((e.clientY - rect.top) / rect.height) * 2 - 1;
     mouseX.set(x);
     mouseY.set(y);
+
+    const image = imageRef.current;
+    if (image) {
+      const imageRect = image.getBoundingClientRect();
+      const imageX = ((e.clientX - imageRect.left) / imageRect.width) * 2 - 1;
+      const imageY = ((e.clientY - imageRect.top) / imageRect.height) * 2 - 1;
+      imageMouseX.set(imageX);
+      imageMouseY.set(imageY);
+    }
   };
 
   const handleMouseEnter = () => setIsHovered(true);
@@ -34,6 +57,8 @@ const RoleCard = ({ role, index }) => {
   const handleMouseLeave = () => {
     mouseX.set(0);
     mouseY.set(0);
+    imageMouseX.set(0);
+    imageMouseY.set(0);
     setIsHovered(false);
   };
 
@@ -79,19 +104,22 @@ const RoleCard = ({ role, index }) => {
       >
         {/* Image section */}
         <div
+          ref={imageRef}
           className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 h-56"
           style={{ transformStyle: 'preserve-3d' }}
         >
           <motion.img
             src={role.image}
             alt={role.title}
+            style={{
+              rotateX: imageRotateX,
+              rotateY: imageRotateY,
+              transformStyle: 'preserve-3d',
+              perspective: '600px',
+            }}
             animate={isHovered ? { scale: 1.07, y: -4 } : { scale: 1, y: 0 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            style={{
-              transform: isHovered ? 'translateZ(20px)' : 'translateZ(0px)',
-              transition: 'transform 0.4s ease',
-            }}
-            className="w-full h-full object-contain p-4"
+            className="w-full h-full object-contain p-4 relative z-10"
           />
           <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white dark:from-slate-800 to-transparent" />
         </div>
