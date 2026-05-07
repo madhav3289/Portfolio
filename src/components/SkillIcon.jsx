@@ -16,11 +16,11 @@ const iconMap = {
   html: { icon: SiHtml5, color: '#e34f26' },
   css: { icon: SiCss, color: '#1572b6' },
   nodejs: { icon: SiNodedotjs, color: '#3c873a' },
-  express: { icon: SiExpress, color: '#aaa' },
+  express: { icon: SiExpress, color: '#90a3b8' },
   mysql: { icon: SiMysql, color: '#00758f' },
   mongodb: { icon: SiMongodb, color: '#4db33d' },
   git: { icon: SiGit, color: '#f05032' },
-  github: { icon: SiGithub, color: '#aaa' },
+  github: { icon: SiGithub, color: '#b0b0b0' },
   vscode: { icon: VscVscode, color: '#007acc' },
 };
 

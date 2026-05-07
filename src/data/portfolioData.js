@@ -1,5 +1,8 @@
 import competitiveProgrammerImg from '../assets/images/competitive-programmer.png';
 import fullStackDeveloperImg from '../assets/images/full-stack-developer.png';
+import greenGrowBanner from '../assets/homebanner/greengrow.png';
+import scriptlifyBanner from '../assets/homebanner/scriptlify.png';
+import cdrnBanner from '../assets/homebanner/cdrn.png';
 
 export const navLinks = [
   { label: 'About', href: '#about' },
@@ -71,7 +74,7 @@ export const projects = [
     tags: ['React', 'Python', 'Tailwind CSS', 'MongoDB', 'Gemini AI'],
     theme: 'Agriculture / Smart Farming',
     gradient: 'from-green-500 to-emerald-700',
-    emoji: '🌱',
+    banner: greenGrowBanner,
   },
   {
     title: 'Scriptlify: AI-Powered eBook Creator',
@@ -82,7 +85,7 @@ export const projects = [
     tags: ['React', 'MongoDB', 'Node.js', 'Express.js', 'Tailwind CSS'],
     theme: 'AI / Software Development',
     gradient: 'from-blue-500 to-violet-700',
-    emoji: '📚',
+    banner: scriptlifyBanner,
   },
   {
     title: 'CDRN — Community Disaster Response Network',
@@ -93,7 +96,7 @@ export const projects = [
     tags: ['React', 'Spring Boot', 'PostgreSQL', 'WebSockets'],
     theme: 'Emergency Response / Disaster Coordination',
     gradient: 'from-red-500 to-orange-700',
-    emoji: '🚨',
+    banner: cdrnBanner,
   },
 ];
 

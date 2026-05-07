@@ -16,20 +16,34 @@ const ProjectCard = ({ project, index }) => {
       whileHover={{ y: -8 }}
       className="group bg-white dark:bg-slate-800/60 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700/50 shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-500/30 transition-all duration-400"
     >
-      {/* Project Header - Colorful Banner */}
-      <div className={`h-44 bg-gradient-to-br ${project.gradient} relative overflow-hidden flex items-center justify-center`}>
-        <span className="text-7xl opacity-80 select-none">{project.emoji}</span>
-        {/* Animated grid overlay */}
-        <div className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-            backgroundSize: '25px 25px',
-          }}
-        />
+      {/* Project Header - Banner Image */}
+      <div className="h-44 bg-slate-900 dark:bg-slate-950 relative overflow-hidden group">
+        {/* Banner Image */}
+        {project.banner ? (
+          <>
+            <img
+              src={project.banner}
+              alt={project.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {/* Subtle overlay glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-slate-900/40 dark:to-slate-950/60" />
+          </>
+        ) : (
+          <div className={`w-full h-full bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
+            <div className="text-center opacity-70">
+              <p className="text-sm text-white/70">Project Preview</p>
+            </div>
+          </div>
+        )}
+
         {/* Theme badge */}
-        <div className="absolute top-4 right-4 bg-black/30 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full font-mono">
+        <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full font-mono border border-white/20 transition-all duration-300 group-hover:bg-black/80">
           {project.theme}
         </div>
+
+        {/* Corner accent */}
+        <div className="absolute top-0 left-0 w-1 h-12 bg-gradient-to-b from-blue-500/60 to-transparent" />
       </div>
 
       {/* Content */}
