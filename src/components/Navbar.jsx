@@ -18,8 +18,24 @@ const Navbar = () => {
 
   const handleNavClick = (href) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+
+    // Small delay to ensure menu closes before scroll
+    requestAnimationFrame(() => {
+      const el = document.querySelector(href);
+      if (!el) return;
+
+      // Get navbar height for proper offset
+      const navbar = document.querySelector('nav');
+      const navbarHeight = navbar?.offsetHeight || 80;
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - navbarHeight - 20;
+
+      // Use window.scrollTo for better mobile compatibility
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
+    });
   };
 
   return (
@@ -137,9 +153,9 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden pointer-events-auto z-40 bg-white/95 dark:bg-[#0a0f1e]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800"
+            className="md:hidden w-full bg-white/95 dark:bg-[#0a0f1e]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800"
           >
-            <div className="px-6 py-4 flex flex-col gap-4">
+            <div className="px-6 py-4 flex flex-col gap-2">
               {navLinks.map((link, i) => (
                 <motion.button
                   key={link.label}
@@ -147,7 +163,8 @@ const Navbar = () => {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: i * 0.05 }}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-left text-slate-700 dark:text-slate-300 font-medium hover:text-blue-500 transition-colors py-1 font-mono"
+                  className="w-full text-left px-3 py-2.5 text-slate-700 dark:text-slate-300 font-medium hover:text-blue-500 active:text-blue-600 transition-colors font-mono rounded hover:bg-slate-100 dark:hover:bg-slate-800/50 active:bg-slate-100 dark:active:bg-slate-800/50"
+                  style={{ cursor: 'pointer', WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
                 >
                   {link.label}
                 </motion.button>
