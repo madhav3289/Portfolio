@@ -60,7 +60,6 @@ const Navbar = () => {
               onClick={() => handleNavClick(link.href)}
               className="relative text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200 group font-mono"
             >
-              <span className="text-blue-500 mr-0.5 text-xs">0{i + 1}.</span>
               {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full rounded-full" />
             </motion.button>
@@ -138,7 +137,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/95 dark:bg-[#0a0f1e]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800"
+            className="md:hidden pointer-events-auto z-40 bg-white/95 dark:bg-[#0a0f1e]/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800"
           >
             <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link, i) => (
@@ -150,7 +149,6 @@ const Navbar = () => {
                   onClick={() => handleNavClick(link.href)}
                   className="text-left text-slate-700 dark:text-slate-300 font-medium hover:text-blue-500 transition-colors py-1 font-mono"
                 >
-                  <span className="text-blue-500 mr-1 text-xs">0{i + 1}.</span>
                   {link.label}
                 </motion.button>
               ))}
