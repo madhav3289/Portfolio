@@ -18,8 +18,8 @@ const contactItems = [
   {
     icon: FaLinkedin,
     label: 'LinkedIn',
-    value: 'madhav-gupta-032b03354',
-    href: 'https://linkedin.com/in/madhav-gupta-032b03354',
+    value: 'madhavgupta3289',
+    href: 'https://linkedin.com/in/madhavgupta3289',
     color: '#0A66C2',
     gradient: 'from-blue-600 to-blue-400',
     description: 'Connect with me professionally',

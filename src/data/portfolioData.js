@@ -15,7 +15,7 @@ export const navLinks = [
 export const socialLinks = [
   { label: 'LeetCode', url: 'https://leetcode.com/u/madhav_g/', icon: 'leetcode' },
   { label: 'Codeforces', url: 'https://codeforces.com/profile/madhav3289', icon: 'codeforces' },
-  { label: 'LinkedIn', url: 'https://linkedin.com/in/madhav-gupta-032b03354', icon: 'linkedin' },
+  { label: 'LinkedIn', url: 'https://linkedin.com/in/madhavgupta3289', icon: 'linkedin' },
   { label: 'GitHub', url: 'https://github.com/madhav3289', icon: 'github' },
   { label: 'Gmail', url: 'mailto:madhavguptadavfps1234@gmail.com', icon: 'gmail' },
 ];
